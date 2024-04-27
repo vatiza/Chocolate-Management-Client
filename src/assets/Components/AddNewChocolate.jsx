@@ -10,6 +10,17 @@ const AddNewChocolate = () => {
     const category = form.selectedOptions.value;
     const chocoleteInfo = { name, country, category };
     console.log(chocoleteInfo);
+    fetch("http://localhost:5000/chocolate", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(chocoleteInfo),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+      });
   };
 
   return (
@@ -21,10 +32,10 @@ const AddNewChocolate = () => {
       </div>
       <div className=" mt-6 flex justify-center ">
         <form onSubmit={handleAddChocolate} className="w-full ps-96 pe-96">
-         <div className="text-center mb-4 ">
-         <h1 className="text-2xl font-bold">New Chocolates</h1>
-          <p>Use the below form to create a new product</p>
-         </div>
+          <div className="text-center mb-4 ">
+            <h1 className="text-2xl font-bold">New Chocolates</h1>
+            <p>Use the below form to create a new product</p>
+          </div>
           <label className="input input-bordered flex items-center gap-2">
             <input
               type="text"
@@ -46,7 +57,7 @@ const AddNewChocolate = () => {
             name="selectedOptions"
             className="select select-bordered mt-4 w-full"
           >
-            <option disabled selected value="Category">
+            <option disabled value="Category">
               Category
             </option>
             <option className="" value="Premium">
@@ -55,7 +66,11 @@ const AddNewChocolate = () => {
             <option value="Free">Free</option>
           </select>
 
-          <input className="mt-4 btn w-full" type="submit" value="Add Chocolate" />
+          <input
+            className="mt-4 btn w-full"
+            type="submit"
+            value="Add Chocolate"
+          />
         </form>
       </div>
     </div>
