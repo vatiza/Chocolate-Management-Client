@@ -3,10 +3,42 @@ import { Link, useLoaderData } from "react-router-dom";
 import { FiPlus } from "react-icons/fi";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+import Swal from "sweetalert2";
+import { useState } from "react";
 
 const Chocolate = () => {
   const chocolates = useLoaderData();
   console.log(chocolates);
+  const [coclate, setCoclate] = useState(chocolates);
+
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/chocolate/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.deletedCount > 0) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success",
+              });
+            }
+          });
+      }
+    });
+  };
   return (
     <div>
       <div className="flex justify-center -ms-96">
@@ -44,8 +76,15 @@ const Chocolate = () => {
                   <td>{chocolate.country}</td>
                   <td>{chocolate.category}</td>
                   <th>
-                    <button className="btn btn-ghost btn-xs"><FaEdit></FaEdit></button>
-                    <button className="btn btn-ghost btn-xs"><MdDelete></MdDelete></button>
+                    <button className="btn btn-ghost btn-xs">
+                      <FaEdit></FaEdit>
+                    </button>
+                    <button
+                      onClick={() => handleDelete(chocolate._id)}
+                      className="btn btn-ghost btn-xs"
+                    >
+                      <MdDelete></MdDelete>
+                    </button>
                   </th>
                 </tr>
               ))}
