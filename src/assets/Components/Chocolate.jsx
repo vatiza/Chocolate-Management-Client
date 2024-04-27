@@ -4,12 +4,10 @@ import { FiPlus } from "react-icons/fi";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import Swal from "sweetalert2";
-import { useState } from "react";
 
 const Chocolate = () => {
   const chocolates = useLoaderData();
   console.log(chocolates);
-  const [coclate, setCoclate] = useState(chocolates);
 
   const handleDelete = (id) => {
     Swal.fire({
@@ -76,9 +74,11 @@ const Chocolate = () => {
                   <td>{chocolate.country}</td>
                   <td>{chocolate.category}</td>
                   <th>
-                    <button className="btn btn-ghost btn-xs">
-                      <FaEdit></FaEdit>
-                    </button>
+                    <Link to="/edit">
+                      <button className="btn btn-ghost btn-xs">
+                        <FaEdit></FaEdit>
+                      </button>
+                    </Link>
                     <button
                       onClick={() => handleDelete(chocolate._id)}
                       className="btn btn-ghost btn-xs"

@@ -5,6 +5,7 @@ import "./index.css";
 import Chocolate from "./assets/Components/Chocolate";
 import AddNewChocolate from "./assets/Components/AddNewChocolate";
 import Main from "./assets/Components/Main";
+import EditChocolate from "./assets/Components/EditChocolate";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
       {
         path: "/addnew",
         element: <AddNewChocolate></AddNewChocolate>,
+      },
+      {
+        path: "/edit",
+        element: <EditChocolate></EditChocolate>,
       },
     ],
   },
