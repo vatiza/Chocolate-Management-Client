@@ -47,7 +47,7 @@ const AddNewChocolate = () => {
           </div>
           <label className=" mb-4 input input-bordered flex items-center gap-2">
             <input
-              type="text"
+              type="url"
               className="grow"
               name="imgurl"
               placeholder="Image URL"

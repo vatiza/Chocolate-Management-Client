@@ -1,6 +1,8 @@
 import { Link, useLoaderData } from "react-router-dom";
 
 import { FiPlus } from "react-icons/fi";
+import { FaEdit } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 
 const Chocolate = () => {
   const chocolates = useLoaderData();
@@ -33,10 +35,7 @@ const Chocolate = () => {
                     <div className="flex items-center gap-3">
                       <div className="avatar">
                         <div className="mask mask-squircle w-12 h-12">
-                          <img
-                            src="https://img.icons8.com/ios/50/user-male-circle--v1.png"
-                            alt="Avatar Tailwind CSS Component"
-                          />
+                          <img src={chocolate.imgurl} alt="chcolate img" />
                         </div>
                       </div>
                     </div>
@@ -45,7 +44,8 @@ const Chocolate = () => {
                   <td>{chocolate.country}</td>
                   <td>{chocolate.category}</td>
                   <th>
-                    <button className="btn btn-ghost btn-xs">details</button>
+                    <button className="btn btn-ghost btn-xs"><FaEdit></FaEdit></button>
+                    <button className="btn btn-ghost btn-xs"><MdDelete></MdDelete></button>
                   </th>
                 </tr>
               ))}
