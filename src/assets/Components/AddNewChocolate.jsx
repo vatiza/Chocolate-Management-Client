@@ -21,6 +21,10 @@ const AddNewChocolate = () => {
       </div>
       <div className=" mt-6 flex justify-center ">
         <form onSubmit={handleAddChocolate} className="w-full ps-96 pe-96">
+         <div className="text-center mb-4 ">
+         <h1 className="text-2xl font-bold">New Chocolates</h1>
+          <p>Use the below form to create a new product</p>
+         </div>
           <label className="input input-bordered flex items-center gap-2">
             <input
               type="text"
@@ -51,7 +55,7 @@ const AddNewChocolate = () => {
             <option value="Free">Free</option>
           </select>
 
-          <input className="mt-4 btn" type="submit" value="Add Chocolate" />
+          <input className="mt-4 btn w-full" type="submit" value="Add Chocolate" />
         </form>
       </div>
     </div>
