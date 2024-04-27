@@ -1,10 +1,12 @@
+import { Link, useLoaderData } from "react-router-dom";
+
 import { FiPlus } from "react-icons/fi";
-import { Link } from "react-router-dom";
 
 const Chocolate = () => {
+  const chocolates = useLoaderData();
+  console.log(chocolates);
   return (
     <div>
-      
       <div className="flex justify-center -ms-96">
         <Link className="btn" to="/addnew">
           <FiPlus></FiPlus> New Chocolate
@@ -13,7 +15,6 @@ const Chocolate = () => {
       <div className="flex justify-center ">
         <div className="overflow-x-auto">
           <table className="table ">
-            {/* head */}
             <thead className="text-lime-600">
               <tr>
                 <th>Image</th>
@@ -23,28 +24,31 @@ const Chocolate = () => {
                 <th>Action</th>
               </tr>
             </thead>
+
             <tbody>
-              {/* row 1 */}
-              <tr>
-                <td>
-                  <div className="flex items-center gap-3">
-                    <div className="avatar">
-                      <div className="mask mask-squircle w-12 h-12">
-                        <img
-                          src="https://img.icons8.com/ios/50/user-male-circle--v1.png"
-                          alt="Avatar Tailwind CSS Component"
-                        />
+              {chocolates.map((chocolate) => (
+                <tr key={chocolate._id}>
+                  <td>
+                    {" "}
+                    <div className="flex items-center gap-3">
+                      <div className="avatar">
+                        <div className="mask mask-squircle w-12 h-12">
+                          <img
+                            src="https://img.icons8.com/ios/50/user-male-circle--v1.png"
+                            alt="Avatar Tailwind CSS Component"
+                          />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </td>
-                <td>Zemlak, Daniel and Leannon</td>
-                <td>Purple</td>
-                <td>Premium</td>
-                <th>
-                  <button className="btn btn-ghost btn-xs">details</button>
-                </th>
-              </tr>
+                  </td>
+                  <td>{chocolate.name}</td>
+                  <td>{chocolate.country}</td>
+                  <td>{chocolate.category}</td>
+                  <th>
+                    <button className="btn btn-ghost btn-xs">details</button>
+                  </th>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

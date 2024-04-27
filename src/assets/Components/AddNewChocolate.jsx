@@ -1,14 +1,16 @@
 import { FiArrowLeft } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const AddNewChocolate = () => {
   const handleAddChocolate = (event) => {
     event.preventDefault();
     const form = event.target;
     const name = form.name.value;
+    const imgurl = form.imgurl.value;
     const country = form.country.value;
     const category = form.selectedOptions.value;
-    const chocoleteInfo = { name, country, category };
+    const chocoleteInfo = { name, imgurl, country, category };
     console.log(chocoleteInfo);
     fetch("http://localhost:5000/chocolate", {
       method: "POST",
@@ -20,6 +22,13 @@ const AddNewChocolate = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Success",
+            text: "New Chocolate Successfully Added!",
+            icon: "success",
+          });
+        }
       });
   };
 
@@ -36,6 +45,14 @@ const AddNewChocolate = () => {
             <h1 className="text-2xl font-bold">New Chocolates</h1>
             <p>Use the below form to create a new product</p>
           </div>
+          <label className=" mb-4 input input-bordered flex items-center gap-2">
+            <input
+              type="text"
+              className="grow"
+              name="imgurl"
+              placeholder="Image URL"
+            />
+          </label>
           <label className="input input-bordered flex items-center gap-2">
             <input
               type="text"
